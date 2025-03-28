@@ -1,0 +1,7 @@
+*.log
+*.bak
+*.tmp
+*.swp
+*.idea/
+*.vscode/
+.ipynb_checkpoints/

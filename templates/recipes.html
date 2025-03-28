@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Recipes</title>
+    <link rel="stylesheet" href="/static/style.css">
+</head>
+<body>
+    <h1>Recipes Found</h1>
+    <a href="/">Search Again</a>
+    <ul>
+        {% for recipe in recipes %}
+        <li>
+            <h2>{{ recipe.title }}</h2>
+            <img src="{{ recipe.image }}" alt="{{ recipe.title }}" style="max-width: 200px;">
+            <a href="{{ url_for('recipe_details', recipe_id=recipe.id) }}">View Details</a>
+        </li>
+        {% endfor %}
+    </ul>
+</body>
+</html>
+

@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{{ recipe.title }}</title>
+    <link rel="stylesheet" href="/static/style.css">
+</head>
+<body>
+    <h1>{{ recipe.title }}</h1>
+    <img src="{{ recipe.image }}" alt="{{ recipe.title }}" style="max-width: 400px;">
+
+    <!-- Render instructions with HTML tags, if present -->
+    <p>{{ recipe.instructions|safe }}</p>
+
+    <h2>Ingredients</h2>
+    <ul>
+        {% for ingredient in recipe.extendedIngredients %}
+        <li>{{ ingredient.original }}</li>
+        {% endfor %}
+    </ul>
+
+    <h1 style="font-size: 2.5em; color: #333;">Welcome to MealSync</h1>
+    <p style="font-size: 1.2em; color: #666;">Plan your meals and sync them effortlessly to your calendar!</p>
+    <h2>Add to Calendar</h2>
+    <form action="/add_to_calendar" method="post">
+        <input type="hidden" name="title" value="{{ recipe.title }}">
+
+        <!-- Render summary with HTML tags, if present -->
+        <label for="description">Description:</label>
+        <textarea id="description" name="description">{{ recipe.summary|safe }}</textarea><br>
+
+        <label for="start_datetime">Start Date/Time:</label>
+        <input type="datetime-local" id="start_datetime" name="start_datetime" required><br>
+
+        <label for="end_datetime">End Date/Time:</label>
+        <input type="datetime-local" id="end_datetime" name="end_datetime" required><br>
+
+        <label for="user_email">Your Google Email:</label>
+        <input type="email" id="user_email" name="user_email" required><br>
+
+        <button type="submit">Add to Calendar</button>
+    </form>
+</body>
+</html>
+
